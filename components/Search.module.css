@@ -1,0 +1,45 @@
+.searchbox {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+    z-index: 1;
+}
+
+.searchbox input {
+    width: 85%;
+    padding: .25rem 1rem;
+    border-radius: 3rem 0 0 3rem;
+    border-color: #1c0c42;
+    color: #000;
+}
+.searchbox input:focus-visible {
+    outline: none;
+}
+
+.searchbox button {
+    width: 15%;
+    padding: .25rem 1rem;
+    border-radius: 0 3rem 3rem 0;
+    background-color: #B537C8;
+    border-color: #B537CB;
+    color: #fff;
+}
+.searchbox button:focus-visible {
+    outline: none;
+}
+
+.suggestion {
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    padding-top: 2rem;
+    border-radius: 1rem;
+}
+.suggestion div {
+    color: #000;
+    padding: .25rem;
+    cursor: pointer;
+}
