@@ -11,7 +11,11 @@
 }
 
 .titleContainer {
-  padding: 1rem 2rem;
+  padding: 1rem 0;
+}
+
+.titleContainer h5 {
+  margin: 0;
 }
 
 .strong {
@@ -28,6 +32,33 @@
   color: #000;
   background: #539CED;
   padding: .25rem 1rem;
-  margin: .25rem .5rem .25rem 0;
+  margin: .25rem .5rem .75rem 0;
   border-radius: 3rem;
+}
+
+.genreRow {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.genreRow .title {
+  font-weight: 600;
+  margin-bottom: .25rem;
+}
+
+.podcasts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+.podcasts .card {
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.podcasts .card img {
+  width: 160px;
+  margin-bottom: .5rem
 }

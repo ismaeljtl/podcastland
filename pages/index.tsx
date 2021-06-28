@@ -25,8 +25,10 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
 
       <header>
         <div className={styles.titleContainer}>
-          <h1 className={styles.strong}>¿Buscabas un podcasts para entretenerte?</h1>
-          <h1 className={styles.subtitle}>Llegaste al sitio correcto</h1>
+          <h1 className={styles.strong}>Looking for a podcast to entertain you?</h1>
+          <h1 className={styles.subtitle}>You've come to the right place.</h1>
+          <h5>Here you will find everything from comedy to tech channels. </h5>
+          <h5>Go ahead and listen 🎧</h5>
         </div>
 
         <Search />
@@ -35,15 +37,17 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
         {genres.map(el => (<label className={styles.category} key={el.id}>{el.name + ' '}</label>))}
       </header>
 
-      <h3><strong>¿No sabes qué escuchar?</strong></h3>
-      <h3>Prueba con las siguientes listas</h3>
-
       {curatedPodcasts.map(podcast => (
-        <div>
-          <p>{podcast.title}</p>
-          <div>{podcast.podcasts.map(el => (
-            <img src={el.image} width="160" />
-          ))}</div>
+        <div className={styles.genreRow} key={podcast.id}>
+          <h4 className='title'>{podcast.title}</h4>
+          <div className={styles.podcasts}>
+            {podcast.podcasts.map(el => (
+              <div className={styles.card} key={el.id}>
+                <img src={el.image} />
+                <small>{el.title}</small>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
