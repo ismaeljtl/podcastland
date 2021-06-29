@@ -5,6 +5,9 @@ import { Genre } from '../interfaces/genre';
 import { GetServerSideProps } from 'next';
 import Search from '../components/Search';
 import { CuratedListElement } from '../interfaces/curatedList';
+import ImageCard from '../components/ImageCard';
+import Image from 'next/image'
+import Footer from '../components/Footer';
 
 export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedListElement[] }) {
   
@@ -21,7 +24,7 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
         <link rel="icon" href="/favicon.ico" /> 
       </Head>
 
-      <nav><img className={styles.logo} src="./logo.png" alt="PodcastLand Logo"/></nav>
+      <nav><Image className={styles.logo} src="/logo.png" alt="PodcastLand Logo" width={300} height={140} /></nav>
 
       <header>
         <div className={styles.titleContainer}>
@@ -41,12 +44,7 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
         <div className={styles.genreRow} key={podcast.id}>
           <h4 className='title'>{podcast.title}</h4>
           <div className={styles.podcasts}>
-            {podcast.podcasts.map(el => (
-              <div className={styles.card} key={el.id}>
-                <img src={el.image} />
-                <small>{el.title}</small>
-              </div>
-            ))}
+            {podcast.podcasts.map(el => <ImageCard podcast={el} key={el.id} /> )}
           </div>
         </div>
       ))}

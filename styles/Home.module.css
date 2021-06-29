@@ -2,7 +2,7 @@
   background: linear-gradient(180deg, #090232 0%, #2D124F 100%);
   width: 100%;
   margin: 0 auto;
-  padding: 0 7.5%;
+  padding: 0 12.5% 1rem;
 }
 
 .logo {
@@ -50,15 +50,4 @@
 .podcasts {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-}
-
-.podcasts .card {
-  padding-right: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.podcasts .card img {
-  width: 160px;
-  margin-bottom: .5rem
 }
