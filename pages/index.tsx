@@ -18,7 +18,7 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
       <Head>
         <title>PodcastLand</title>
         <meta name="description" content="Your entertainment site" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" /> 
       </Head>
 
       <nav><img className={styles.logo} src="./logo.png" alt="PodcastLand Logo"/></nav>
