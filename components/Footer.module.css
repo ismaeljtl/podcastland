@@ -9,3 +9,11 @@
 .footer small {
     margin: 0;
 }
+
+@media (max-width: 670px) {
+    .footer {
+        display: flex;
+        flex-direction: column;
+        padding: .5rem 1rem;
+    }
+  }

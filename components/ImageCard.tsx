@@ -9,7 +9,14 @@ export default function ImageCard(props: { podcast: Podcast }) {
 
     return (
         <div className={styles.card}>
-            <Image loader={myLoader} src={props.podcast.image} alt="Picture of the author" width={160} height={160} layout="responsive" />
+            <Image 
+                loader={myLoader} 
+                src={props.podcast.image} 
+                alt={props.podcast.title} 
+                width={160} 
+                height={160} 
+                layout="responsive" 
+            />
             <small>{props.podcast.title}</small>
         </div>
     )

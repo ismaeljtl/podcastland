@@ -10,6 +10,7 @@
     padding: .25rem 1rem;
     border-radius: 3rem 0 0 3rem;
     border-color: #1c0c42;
+    border-width: 0;
     color: #000;
 }
 .searchbox input:focus-visible {
@@ -42,4 +43,14 @@
     color: #000;
     padding: .25rem;
     cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .searchbox input {
+        width: 70%;
+    }
+
+    .searchbox button {
+        width: 30%;
+    }
 }

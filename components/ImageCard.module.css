@@ -2,6 +2,7 @@
     padding-right: 1rem;
     display: flex;
     flex-direction: column;
+    margin-bottom: .5rem;
 }
   
 .card img {

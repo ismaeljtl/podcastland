@@ -7,14 +7,26 @@ import Search from '../components/Search';
 import { CuratedListElement } from '../interfaces/curatedList';
 import ImageCard from '../components/ImageCard';
 import Image from 'next/image'
-import Footer from '../components/Footer';
+import Link from 'next/link'
+import Loader from '../components/Loader';
 
 export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedListElement[] }) {
   
   const [genres, setGenres] = useState(props.genres);
   const [curatedPodcasts, setCuratedPodcasts] = useState(props.curatedPodcasts);
-
-  useEffect(()=>{console.log(props.curatedPodcasts), []});
+  
+  const [indexPage, setIndexPage] = useState(2);
+  const [loading, setLoading] = useState(false);
+  const loadMorePodcasts = async () => {
+    setLoading(true);
+    const data = await (await fetch(`https://listen-api.listennotes.com/api/v2/curated_podcasts?page=${indexPage}`, {
+      method: 'GET',
+      headers:{ 'X-ListenAPI-Key': '47fae8b32d2b4c57b681a292de58f553'}
+    })).json();
+    setCuratedPodcasts([...curatedPodcasts, ...data.curated_lists]);
+    setIndexPage(indexPage + 1);
+    setLoading(false);
+  }
 
   return (
     <div className={styles.container}>
@@ -45,9 +57,17 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
           <h4 className='title'>{podcast.title}</h4>
           <div className={styles.podcasts}>
             {podcast.podcasts.map(el => <ImageCard podcast={el} key={el.id} /> )}
+          <Link href={`/category/${podcast.id}`} >
+            <a className={styles.viewMore}>View more...</a>
+          </Link>
           </div>
         </div>
       ))}
+
+      <div className={styles.buttonContainer}>
+        { !loading && <button onClick={loadMorePodcasts}>Load more Podcasts</button> }
+        { loading && <Loader /> }
+      </div>
     </div>
   )
 }
