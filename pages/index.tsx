@@ -7,12 +7,13 @@ import { CuratedListElement } from '../interfaces/curatedList';
 import ImageCard from '../components/ImageCard';
 import Link from 'next/link'
 import Loader from '../components/Loader';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedListElement[] }) {
   
   const [curatedPodcasts, setCuratedPodcasts] = useState(props.curatedPodcasts);
-  
   const [indexPage, setIndexPage] = useState(2);
+  
   const [loading, setLoading] = useState(false);
   const loadMorePodcasts = async () => {
     setLoading(true);
@@ -45,23 +46,32 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
           </Link>
         ))}
       </header>
-
-      {curatedPodcasts.map(podcast => (
-        <div className={styles.genreRow} key={podcast.id}>
-          <h4 className='title'>{podcast.title}</h4>
-          <div className={styles.podcasts}>
-            {podcast.podcasts.map(el => <ImageCard podcast={el} key={el.id} /> )}
-          <Link href={`/curated/${podcast.id}`} >
-            <a className={styles.viewMore}>View more...</a>
-          </Link>
+      
+      <InfiniteScroll
+        dataLength={curatedPodcasts.length}
+        next={loadMorePodcasts}
+        hasMore={true}
+        loader={<Loader />}
+        endMessage={<h4>Nothing more to show</h4>}
+      >
+        {curatedPodcasts.map(podcast => (
+          <div className={styles.genreRow} key={podcast.id}>
+            <h4 className='title'>{podcast.title}</h4>
+            <div className={styles.podcasts}>
+              {podcast.podcasts.map(el => <ImageCard podcast={el} key={el.id} /> )}
+            <Link href={`/curated/${podcast.id}`} >
+              <a className={styles.viewMore}>View more...</a>
+            </Link>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </InfiniteScroll>
 
-      <div className={styles.buttonContainer}>
+
+      {/* <div className={styles.buttonContainer}>
         { !loading && <button onClick={loadMorePodcasts}>Load more Podcasts</button> }
         { loading && <Loader /> }
-      </div>
+      </div> */}
     </div>
   )
 }
