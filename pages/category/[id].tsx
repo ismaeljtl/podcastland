@@ -5,7 +5,7 @@ import ImageCard from '../../components/ImageCard';
 
 export default function Category (props: {data: CategoryPodcasts}) {
     return <div className={styles.container}>
-        <h4 className={styles.title}>Showing the best podcasts in the CategoryPodcasts of {props.data.name}</h4>
+        <h4 className={styles.title}>Showing the best podcasts in the CategoryPodcasts of <label className={styles.category}>{props.data.name}</label></h4>
 
         <div className={styles.podcasts}>
             {props.data.podcasts.map(podcast => (

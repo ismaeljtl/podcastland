@@ -1,18 +1,15 @@
-import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 import { Genre } from '../interfaces/genre';
 import { GetServerSideProps } from 'next';
 import Search from '../components/Search';
 import { CuratedListElement } from '../interfaces/curatedList';
 import ImageCard from '../components/ImageCard';
-import Image from 'next/image'
 import Link from 'next/link'
 import Loader from '../components/Loader';
 
 export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedListElement[] }) {
   
-  const [genres, setGenres] = useState(props.genres);
   const [curatedPodcasts, setCuratedPodcasts] = useState(props.curatedPodcasts);
   
   const [indexPage, setIndexPage] = useState(2);
@@ -42,7 +39,7 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
         <Search />
         
         <h3>Categorías de Canales</h3>
-        {genres.map(el => (
+        {props.genres.map(el => (
           <Link href={`/category/${el.id}`} key={el.id} >
             <a className={styles.category}>{el.name + ' '}</a>
           </Link>
