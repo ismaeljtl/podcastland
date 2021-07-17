@@ -30,13 +30,6 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>PodcastLand</title>
-        <meta name="description" content="Your entertainment site" />
-        <link rel="icon" href="/favicon.ico" /> 
-      </Head>
-
-      <nav><Image className={styles.logo} src="/logo.png" alt="PodcastLand Logo" width={300} height={140} /></nav>
 
       <header>
         <div className={styles.titleContainer}>
@@ -49,7 +42,11 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
         <Search />
         
         <h3>Categorías de Canales</h3>
-        {genres.map(el => (<label className={styles.category} key={el.id}>{el.name + ' '}</label>))}
+        {genres.map(el => (
+          <Link href={`/category/${el.id}`} key={el.id} >
+            <a className={styles.category}>{el.name + ' '}</a>
+          </Link>
+        ))}
       </header>
 
       {curatedPodcasts.map(podcast => (
@@ -57,7 +54,7 @@ export default function Home(props: { genres: Genre[], curatedPodcasts: CuratedL
           <h4 className='title'>{podcast.title}</h4>
           <div className={styles.podcasts}>
             {podcast.podcasts.map(el => <ImageCard podcast={el} key={el.id} /> )}
-          <Link href={`/category/${podcast.id}`} >
+          <Link href={`/curated/${podcast.id}`} >
             <a className={styles.viewMore}>View more...</a>
           </Link>
           </div>
