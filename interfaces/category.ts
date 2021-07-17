@@ -1,6 +1,6 @@
 import { Podcast } from './podcast';
 
-export interface Category {
+export interface CategoryPodcasts {
     id: number;
     name: string;
     parent_id: number;

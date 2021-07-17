@@ -1,11 +1,11 @@
 import { GetServerSideProps } from 'next';
 import styles from '../../styles/Category.module.css'
-import { Category } from '../../interfaces/category';
+import { CategoryPodcasts } from '../../interfaces/category';
 import ImageCard from '../../components/ImageCard';
 
-export default function Category (props: {data: Category}) {
+export default function Category (props: {data: CategoryPodcasts}) {
     return <div className={styles.container}>
-        <h4 className={styles.title}>Showing the best podcasts in the category of {props.data.name}</h4>
+        <h4 className={styles.title}>Showing the best podcasts in the CategoryPodcasts of {props.data.name}</h4>
 
         <div className={styles.podcasts}>
             {props.data.podcasts.map(podcast => (
@@ -18,7 +18,7 @@ export default function Category (props: {data: Category}) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const id: any = context.params!.id; 
 
-    const data: Category = await (await fetch(`${process.env.BASE_URL}/best_podcasts?genre_id=${id}&page=1&region=us&safe_mode=0`, {
+    const data: CategoryPodcasts = await (await fetch(`${process.env.BASE_URL}/best_podcasts?genre_id=${id}&page=1&region=us&safe_mode=0`, {
         method: 'GET',
         headers:{ 'X-ListenAPI-Key': process.env.NEXT_PUBLIC_KEY!}
     })).json();
