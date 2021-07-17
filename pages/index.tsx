@@ -40,7 +40,7 @@ export default function Home(props: {
       hasMore={true}
       loader={<Loader />}
       endMessage={""}
-      style={{ background: "#2c124f" }}
+      style={{ background: "#2c124f", overflow: 'unset' }}
     >
       <div className={styles.container}>
         <header>
