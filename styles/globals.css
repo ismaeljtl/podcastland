@@ -13,3 +13,10 @@ body {
   font-weight: 400;
   color: #fff;
 }
+
+.back {
+  display: block;
+  text-decoration: none;
+  color: #EE7EFF;
+  padding-top: 2rem;
+}

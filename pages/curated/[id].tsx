@@ -2,17 +2,24 @@ import { GetServerSideProps } from 'next';
 import styles from '../../styles/Category.module.css'
 import { CuratedListElement } from '../../interfaces/curatedList';
 import ImageCard from '../../components/ImageCard';
+import Link from 'next/link';
 
 export default function Category (props: {data: CuratedListElement}) {
-    return <div className={styles.container}>
-        <h4 className={styles.title}>{props.data.title}</h4>
+    return (
+        <div className={styles.container}>
+            <Link href={'/'}>
+                <a className='back'>← Go back</a>
+            </Link>
 
-        <div className={styles.podcasts}>
-            {props.data.podcasts.map(podcast => (
-                <ImageCard podcast={podcast} key={podcast.id} /> 
-            ))}
+            <h4 className={styles.title}>{props.data.title}</h4>
+
+            <div className={styles.podcasts}>
+                {props.data.podcasts.map(podcast => (
+                    <ImageCard podcast={podcast} key={podcast.id} /> 
+                ))}
+            </div>
         </div>
-    </div>
+    )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

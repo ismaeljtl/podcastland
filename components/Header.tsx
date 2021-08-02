@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from 'next/image'
+import Link from "next/link";
 import styles from './Header.module.css'
 
 export default function Header() {
@@ -11,8 +12,13 @@ export default function Header() {
                 <link rel="icon" href="/favicon.ico" /> 
             </Head>
 
+
             <nav className={styles.header}>
-                <Image className={styles.logo} src="/logo.png" alt="PodcastLand Logo" width={300} height={140} />
+                <Link href={'/'}>
+                    <a className={styles.category}>
+                        <Image className={styles.logo} src="/logo.png" alt="PodcastLand Logo" width={300} height={140} />
+                    </a>
+                </Link>
             </nav>
         </div>
     )

@@ -1,9 +1,12 @@
+import { useRouter } from 'next/dist/client/router';
 import { useCallback, useEffect, useState } from 'react';
 import { Typeahead } from '../interfaces/typeahead';
+import { typeaheadPodcast } from '../interfaces/typeaheadPodcast';
 import debounce from '../utils/debounce';
 import styles from './Search.module.css';
 
 export default function Search() {
+    const router = useRouter();
     const [input, setInput] = useState('');
     const [data, setData] = useState<Typeahead>();
 
@@ -31,21 +34,25 @@ export default function Search() {
         const data: Typeahead = await res.json();
         setData(data);
     }
+
+    const handleSearch = (podcast: typeaheadPodcast) => {
+        router.push(`/episodes/${podcast.id}`);
+    }
     
     return (
         <main className={styles.searchbox}>
             <input
-                placeholder="Busca tu Canal de Podcast Favorito"
+                placeholder="Search your favorite Podcast Channel"
                 value={input}
                 type="search"
                 onChange={(e) => setInput(e.target.value)}
             />
-            <button>Buscar</button>
+            <button>Search</button>
             <div className={styles.suggestion}>
                 {data !== undefined && data.podcasts.map(podcast => (
                     <div 
                         className="item" 
-                        onClick={() => setInput(podcast.publisher_original)} 
+                        onClick={() => handleSearch(podcast)} 
                         key={podcast.id}
                     >{podcast.publisher_original}</div>
                 ))}

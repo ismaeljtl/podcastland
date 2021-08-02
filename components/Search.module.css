@@ -7,7 +7,7 @@
 
 .searchbox input {
     width: 85%;
-    padding: .25rem 1rem;
+    padding: .5rem 1rem;
     border-radius: 3rem 0 0 3rem;
     border-color: #1c0c42;
     border-width: 0;
@@ -17,14 +17,16 @@
     outline: none;
 }
 
+
 .searchbox button {
     width: 15%;
-    padding: .25rem 1rem;
+    padding: .4rem 1rem;
     border-radius: 0 3rem 3rem 0;
     background-color: #B537C8;
     border-color: #B537CB;
     color: #fff;
 }
+
 .searchbox button:focus-visible {
     outline: none;
 }
@@ -32,7 +34,7 @@
 .suggestion {
     background-color: #fff;
     position: absolute;
-    top: 0;
+    top: 2px;
     left: 0;
     right: 0;
     z-index: -1;

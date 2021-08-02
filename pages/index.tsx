@@ -16,9 +16,7 @@ export default function Home(props: {
   const [curatedPodcasts, setCuratedPodcasts] = useState(props.curatedPodcasts);
   const [indexPage, setIndexPage] = useState(2);
 
-  const [loading, setLoading] = useState(false);
   const loadMorePodcasts = async () => {
-    setLoading(true);
     const data = await (
       await fetch(
         `https://listen-api.listennotes.com/api/v2/curated_podcasts?page=${indexPage}`,
@@ -30,7 +28,6 @@ export default function Home(props: {
     ).json();
     setCuratedPodcasts([...curatedPodcasts, ...data.curated_lists]);
     setIndexPage(indexPage + 1);
-    setLoading(false);
   };
 
   return (
@@ -49,10 +46,10 @@ export default function Home(props: {
               Looking for a podcast to entertain you?
             </h1>
             <h1 className={styles.subtitle}>You've come to the right place.</h1>
-            <h5>
+            <h4>
               Here you will find everything from comedy to tech channels.{" "}
-            </h5>
-            <h5>Go ahead and listen 🎧</h5>
+            </h4>
+            <h4>Go ahead and listen 🎧</h4>
           </div>
 
           <Search />

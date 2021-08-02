@@ -9,3 +9,14 @@
     width: 160px;
     margin-bottom: .5rem
 }
+
+.link {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+}
+
+.title {
+    margin-top: 0.5rem;
+  }
