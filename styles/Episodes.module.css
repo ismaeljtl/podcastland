@@ -10,3 +10,15 @@
     grid-template-columns: 200px 1fr;
     gap: 2rem;
 }
+
+.strong {
+    font-weight: 600;
+}
+
+.episodes div:first-child {
+    border-radius: .5rem .5rem 0 0;
+}
+
+.episodes div:last-child {
+    border-radius: 0 0 .5rem .5rem;
+}

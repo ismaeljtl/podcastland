@@ -6,11 +6,13 @@ import { PodcastEpisodes } from '../../interfaces/podcastEpisodes';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from "../../components/Loader";
 import { useState } from 'react';
+import EpisodeRow from '../../components/EpisodeRow';
 
 export default function Episodes (props: {data: PodcastEpisodes, id: string}) {
     const id = props.id;
     const [episodes, setEpisodes] = useState(props.data.episodes);
     const [pubDate, setPubDate] = useState(props.data.next_episode_pub_date);
+    const [loadMore, setLoadMore] = useState(true);
     
     const myLoader = ({ src }: any) => {
         return `${src}`
@@ -26,6 +28,9 @@ export default function Episodes (props: {data: PodcastEpisodes, id: string}) {
             }
         )
         ).json();
+        if (data.next_episode_pub_date === null) {
+            setLoadMore(false);
+        }
         setEpisodes([...episodes, ...data.episodes]);
         setPubDate(data.next_episode_pub_date);
     };
@@ -34,7 +39,7 @@ export default function Episodes (props: {data: PodcastEpisodes, id: string}) {
         <InfiniteScroll
             dataLength={episodes.length}
             next={loadMorePodcasts}
-            hasMore={true}
+            hasMore={loadMore}
             loader={<Loader />}
             endMessage={""}
             style={{ background: "#2c124f", overflow: 'unset' }}
@@ -43,6 +48,9 @@ export default function Episodes (props: {data: PodcastEpisodes, id: string}) {
                 <Link href={'/'}>
                     <a className='back'>← Go back</a>
                 </Link>
+                <p>
+                    Showing results for: <strong className={styles.strong}>{props.data.publisher}</strong>
+                </p>
 
                 <div className={styles.gridContainer}>
                     <div className="podcast">
@@ -57,9 +65,9 @@ export default function Episodes (props: {data: PodcastEpisodes, id: string}) {
                         <p>{props.data.title}</p>
                     </div>
 
-                    <div className="episodes">
+                    <div className={styles.episodes}>
                         {episodes.map(episode => (
-                            <p key={episode.id}>{episode.title}</p>
+                            <EpisodeRow key={episode.id} episode={episode} />
                         ))}
                     </div>
                 </div>
