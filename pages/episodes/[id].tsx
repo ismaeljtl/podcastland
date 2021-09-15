@@ -49,21 +49,26 @@ export default function Episodes (props: {data: PodcastEpisodes, id: string}) {
                     <a className='back'>← Go back</a>
                 </Link>
                 <p>
-                    Showing results for: <strong className={styles.strong}>{props.data.publisher}</strong>
+                    <strong className={styles.strong}>{props.data.publisher}</strong>
                 </p>
 
-                <div className={styles.gridContainer}>
-                    <div className="podcast">
-                        <Image 
-                            loader={myLoader} 
-                            src={props.data.image} 
-                            alt={props.data.title} 
-                            width={160} 
-                            height={160} 
-                            layout="responsive" 
-                        />
-                        <p>{props.data.title}</p>
+                <div className={styles.flexContainer}>
+                    <div className={styles.thumbnail}>
+                        <div className={styles.image}>
+                            <Image 
+                                loader={myLoader} 
+                                src={props.data.image} 
+                                alt={props.data.title} 
+                                width={160} 
+                                height={160} 
+                                layout="responsive" 
+                            />
+                        </div>
+                        <p><strong className={styles.strong}>Description</strong></p>
+                        <div dangerouslySetInnerHTML={{ __html: props.data.description }} />
                     </div>
+
+                    <hr className={styles.divider} />
 
                     <div className={styles.episodes}>
                         {episodes.map(episode => (

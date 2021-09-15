@@ -5,10 +5,18 @@
     padding: 0 12.5% 1rem;
 }
 
-.gridContainer {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 2rem;
+.flexContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.image{
+    margin: 0 30%;
+}
+
+.divider {
+    border: 1px solid #EE7EFF;
+    margin: 1.5rem 0;
 }
 
 .strong {
@@ -21,4 +29,10 @@
 
 .episodes div:last-child {
     border-radius: 0 0 .5rem .5rem;
+}
+
+@media (max-width: 600px) {
+    .image{
+        margin: inherit;
+    }
 }
