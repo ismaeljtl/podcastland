@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
+import { PodcastContext } from '../context/PodcastContext';
 import styles from './AudioPlayer.module.css';
 
 export default function AudioPlayer() {
@@ -10,6 +11,13 @@ export default function AudioPlayer() {
     const audioPlayer = useRef<HTMLAudioElement>(null); // reference of audio component
     const progressBar = useRef<HTMLInputElement>(null); // reference to progress bar
     const animationRef = useRef(0);
+
+    const [audio, setAudio] = useState('');
+    const { value } = useContext(PodcastContext);
+
+    useEffect(() => {
+        setAudio(value);
+    }, [value])
 
     useEffect(() => {
         const seconds = Math.floor(audioPlayer.current!.duration);
@@ -68,7 +76,7 @@ export default function AudioPlayer() {
             
             <audio 
                 ref={audioPlayer}
-                src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/af52a99b-88c0-4638-b120-d46e142d06d3/audio/500344fb-2e2b-48af-be86-af6ac341a6da/default_tc.mp3" 
+                src={audio} 
                 preload="metadata"
             ></audio>
             <button onClick={backTenSecs}>back 10</button>
