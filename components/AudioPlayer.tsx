@@ -13,11 +13,28 @@ export default function AudioPlayer() {
     const animationRef = useRef(0);
 
     const [audio, setAudio] = useState('');
+    const [audioLoading, setAudioLoading] = useState(false);
     const { value } = useContext(PodcastContext);
-
+    
     useEffect(() => {
+        if (!value) {
+            return
+        }
         setAudio(value);
     }, [value])
+    
+    useEffect(() => {
+        if (!value) {
+            return
+        }
+
+        setIsPlaying(false);
+        if (!audioLoading) {
+            audioPlayer.current!.play();
+            animationRef.current = requestAnimationFrame(whilePlaying);
+        }
+        setIsPlaying(true);
+    }, [audioLoading])
 
     useEffect(() => {
         const seconds = Math.floor(audioPlayer.current!.duration);
@@ -70,7 +87,7 @@ export default function AudioPlayer() {
         progressBar.current!.value = String(parseFloat(progressBar.current!.value) + 10);
         changeRange();
     }
-
+    
     return (
         <div className={styles.audioPlayer}>
             
@@ -78,12 +95,17 @@ export default function AudioPlayer() {
                 ref={audioPlayer}
                 src={audio} 
                 preload="metadata"
+                onLoadStart={() => audio ? setAudioLoading(true) : null}
+                onLoadedData={() => setAudioLoading(false)}
             ></audio>
             <button onClick={backTenSecs}>back 10</button>
 
-            <button onClick={togglePlayPause} >
-                {isPlaying ? 'pause' : 'play'}
-            </button>
+            { audioLoading && <button disabled>Loading...</button> }
+            { !audioLoading && 
+                <button onClick={togglePlayPause} >
+                    {isPlaying ? 'pause' : 'play'}
+                </button>
+            }
 
             <button onClick={forwardTenSecs}>forward 10</button>
 

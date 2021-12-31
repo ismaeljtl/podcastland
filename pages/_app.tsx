@@ -6,7 +6,7 @@ import { PodcastContext } from '../context/PodcastContext';
 import { SetStateAction, useState } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [value, setValue] = useState({ value: undefined, setValue: undefined });
+  const [value, setValue] = useState(undefined);
 
   return (
     <PodcastContext.Provider value={{value, setValue}}>
