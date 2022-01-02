@@ -2,7 +2,14 @@
     background: linear-gradient(180deg, #090232 0%, #2D124F 100%);
     width: 100%;
     margin: 0 auto;
-    padding: 0 12.5% 1rem;
+    padding: 0 12.5% 4rem;
+}
+
+.containerWithAudioPlayer {
+    background: linear-gradient(180deg, #090232 0%, #2D124F 100%);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 12.5% 8.5rem;
 }
 
 .flexContainer {

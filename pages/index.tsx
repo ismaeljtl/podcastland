@@ -40,7 +40,7 @@ export default function Home(props: {
       style={{ background: "#2c124f", overflow: 'unset' }}
     >
       <div className={styles.container}>
-        <header>
+        <header className={styles.header}>
           <div className={styles.titleContainer}>
             <h1 className={styles.strong}>
               Looking for a podcast to entertain you?
@@ -54,7 +54,7 @@ export default function Home(props: {
 
           <Search />
 
-          <h3>Categorías de Canales</h3>
+          <h3>Category of Channels</h3>
           {props.genres.map((el) => (
             <Link href={`/category/${el.id}`} key={el.id}>
               <a className={styles.category}>{el.name + " "}</a>

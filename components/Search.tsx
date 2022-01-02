@@ -12,7 +12,7 @@ export default function Search() {
 
     useEffect(
         () => {
-            if (input !== "") {
+            if (input.trim() !== "") {
                 verify(input);
             }
         }, 

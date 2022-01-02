@@ -5,14 +5,17 @@ import Image from 'next/image';
 import { PodcastEpisodes } from '../../interfaces/podcastEpisodes';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from "../../components/Loader";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import EpisodeRow from '../../components/EpisodeRow';
+import { PodcastContext } from '../../context/PodcastContext';
 
 export default function Episodes (props: {data: PodcastEpisodes, id: string}) {
     const id = props.id;
     const [episodes, setEpisodes] = useState(props.data.episodes);
     const [pubDate, setPubDate] = useState(props.data.next_episode_pub_date);
     const [loadMore, setLoadMore] = useState(true);
+    const { value } = useContext(PodcastContext);
+
     
     const myLoader = ({ src }: any) => {
         return `${src}`
@@ -44,7 +47,7 @@ export default function Episodes (props: {data: PodcastEpisodes, id: string}) {
             endMessage={""}
             style={{ background: "#2c124f", overflow: 'unset' }}
         >
-            <div className={styles.container}>
+            <div className={value ? styles.containerWithAudioPlayer : styles.container}>
                 <Link href={'/'}>
                     <a className='back'>← Go back</a>
                 </Link>

@@ -9,3 +9,15 @@
   margin: 0 auto;
   padding: 0 12.5%;
 }
+
+@media (min-width: 1500px) {
+  .header {
+    padding: 0 15%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .header {
+    padding: 0 20%;
+  }
+}

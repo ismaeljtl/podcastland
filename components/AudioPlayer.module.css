@@ -1,6 +1,6 @@
 .audioPlayer {
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    bottom: 39px;
     left: 0;
     right: 0;
     display: flex;

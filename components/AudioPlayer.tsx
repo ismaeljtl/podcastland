@@ -89,7 +89,7 @@ export default function AudioPlayer() {
     }
     
     return (
-        <div className={styles.audioPlayer}>
+        <div className={styles.audioPlayer} >
             
             <audio 
                 ref={audioPlayer}

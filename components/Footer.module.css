@@ -1,3 +1,15 @@
+.innerContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.footerContainer {
+    position: relative;
+    bottom: 0;
+}
+
 .footer {
     background: #539CED;
     display: flex;
