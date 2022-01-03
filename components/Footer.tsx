@@ -11,7 +11,7 @@ export default function Footer() {
             <div className={styles.innerContainer}>
                 { value && <AudioPlayer />}
                 <div className={styles.footer}>
-                    <small>This Project was Designed and Developed with 💚 by Gabriela Tochón & Ismael Teixeira</small>
+                    <small>This Project was Designed and Developed with 💜 by Gabriela Tochón & Ismael Teixeira</small>
                     <small>July 2021</small>
                 </div>
             </div>
