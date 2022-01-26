@@ -22,11 +22,20 @@
     margin: 0;
 }
 
-@media (max-width: 670px) {
+@media (max-width: 600px) {
+    .footer {
+        display: block;
+        padding: 0 12.5%;
+    }
+    .footer small:last-child {
+        margin-left: .5rem;
+    }
+}
+@media (min-width: 601px) {
     .footer {
         display: flex;
-        flex-direction: column;
-        padding: .5rem 1rem;
+        flex-direction: row;
+        padding: .5rem 12.5%;
     }
 }
 @media (min-width: 1500px) {

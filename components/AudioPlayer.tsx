@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, useContext } from 'react';
 import { PodcastContext } from '../context/PodcastContext';
+import { Episode } from '../interfaces/episode';
 import styles from './AudioPlayer.module.css';
+import Image from 'next/image';
 
 export default function AudioPlayer() {
 
@@ -10,21 +12,24 @@ export default function AudioPlayer() {
 
     const audioPlayer = useRef<HTMLAudioElement>(null); // reference of audio component
     const progressBar = useRef<HTMLInputElement>(null); // reference to progress bar
+    const volumeBar = useRef<HTMLInputElement>(null); // reference to volume bar
     const animationRef = useRef(0);
 
     const [audio, setAudio] = useState('');
     const [audioLoading, setAudioLoading] = useState(false);
-    const { value } = useContext(PodcastContext);
+    
+    const podcast = useContext(PodcastContext);
+    const podcastContext: Episode = podcast.value;
     
     useEffect(() => {
-        if (!value) {
+        if (!podcastContext) {
             return
         }
-        setAudio(value);
-    }, [value])
+        setAudio(podcastContext.audio);
+    }, [podcastContext])
     
     useEffect(() => {
-        if (!value) {
+        if (!podcastContext) {
             return
         }
 
@@ -78,6 +83,10 @@ export default function AudioPlayer() {
         changePlayerCurrentTime();
     }
 
+    const changeVolumeRange = () => {
+        audioPlayer.current!.volume = parseFloat(volumeBar.current!.value)/100;
+    }
+
     const backTenSecs = () => {
         progressBar.current!.value = String(parseFloat(progressBar.current!.value) - 10);
         changeRange();
@@ -98,19 +107,26 @@ export default function AudioPlayer() {
                 onLoadStart={() => audio ? setAudioLoading(true) : null}
                 onLoadedData={() => setAudioLoading(false)}
             ></audio>
-            <button onClick={backTenSecs}>back 10</button>
+            <button className={styles.transparent} onClick={backTenSecs}>
+                <Image src="/backward.png" alt="play" width={59} height={40} />
+            </button>
 
             { audioLoading && <button disabled>Loading...</button> }
             { !audioLoading && 
-                <button onClick={togglePlayPause} >
-                    {isPlaying ? 'pause' : 'play'}
+                <button className={isPlaying ? styles.pause : styles.play} onClick={togglePlayPause} >
+                    {isPlaying ? 
+                        <Image src="/pause.png" alt="pause" width={11} height={16} /> : 
+                        <Image src="/play.png" alt="play" width={14} height={16} />
+                    }
                 </button>
             }
 
-            <button onClick={forwardTenSecs}>forward 10</button>
+            <button className={styles.transparent} onClick={forwardTenSecs}>
+                <Image src="/forward.png" alt="play" width={59} height={40} />
+            </button>
 
             {/* current time */}
-            <div>{calculateDuration(currentTime)}</div>
+            <div className={styles.timer}>{calculateDuration(currentTime)}</div>
 
             {/* progress bar */}
             <div className={styles.progressBarContainer}>
@@ -125,6 +141,18 @@ export default function AudioPlayer() {
 
             {/* duration */}
             <div className={styles.duration}>{(duration && !isNaN(duration)) ? calculateDuration(duration) : '00:00'}</div>
+
+            {/* volume bar */}
+            {/* styles to volume bar: https://stackoverflow.com/questions/15935837/how-to-display-a-range-input-slider-vertically */}
+            <div className={styles.VolumeBarContainer}>
+                <input 
+                    ref={volumeBar} 
+                    onChange={changeVolumeRange} 
+                    type="range" 
+                    className={styles.volumeBar} 
+                    defaultValue="100" 
+                />
+            </div>
 
         </div>
     )

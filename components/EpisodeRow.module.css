@@ -4,3 +4,17 @@
     margin: 1px 0;
     color: #090232;
 }
+.active {
+    font-weight: 600;
+    padding: 1rem;
+    background-color: #C9AEF1;
+    margin: 1px 0;
+    color: #090232;
+    border: 2px solid #E9DAFB;
+}
+.container:hover {
+    cursor: pointer;
+}
+.container:last-child {
+    margin-bottom: 2.5rem;
+}

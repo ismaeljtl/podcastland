@@ -1,6 +1,7 @@
 .container {
   text-align: center;
   background: #2c124f;
+  padding-bottom: 3rem;
 }
 .ldsSpinner {
   color: #fff;

@@ -68,7 +68,7 @@ export default function Episodes (props: {data: PodcastEpisodes, id: string}) {
                             />
                         </div>
                         <p><strong className={styles.strong}>Description</strong></p>
-                        <div dangerouslySetInnerHTML={{ __html: props.data.description }} />
+                        <div style={{overflow: 'auto'}} dangerouslySetInnerHTML={{ __html: props.data.description }} />
                     </div>
 
                     <hr className={styles.divider} />
