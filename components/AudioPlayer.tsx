@@ -39,11 +39,11 @@ export default function AudioPlayer() {
       animationRef.current = requestAnimationFrame(whilePlaying);
     }
     setIsPlaying(true);
+    animationRef.current = requestAnimationFrame(whilePlaying);
   }, [audioLoading]);
 
   useEffect(() => {
     const seconds = Math.floor(audioPlayer.current!.duration);
-    console.log(duration);
     progressBar.current!.max = seconds.toString();
   }, [
     audioPlayer?.current?.onloadedmetadata,
