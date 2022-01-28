@@ -20,6 +20,8 @@ export default function AudioPlayer() {
     
     const podcast = useContext(PodcastContext);
     const podcastContext: Episode = podcast.value;
+
+    console.log(audioLoading);
     
     useEffect(() => {
         if (!podcastContext) {
@@ -68,6 +70,7 @@ export default function AudioPlayer() {
     }
 
     const changePlayerCurrentTime = () => {
+        console.log(audioLoading);
         progressBar.current!.style.setProperty('--seek-before-width', `${parseFloat(progressBar.current!.value) / duration * 100}%`)
         setCurrentTime(parseFloat(progressBar.current!.value));
     }
@@ -104,8 +107,8 @@ export default function AudioPlayer() {
                 ref={audioPlayer}
                 src={audio} 
                 preload="metadata"
-                onLoadStart={() => audio ? setAudioLoading(true) : null}
-                onLoadedData={() => setAudioLoading(false)}
+                onLoadStart={() => audio && setAudioLoading(true)}
+                onCanPlayThrough={() => audio && setAudioLoading(false)}
             ></audio>
             <button className={styles.transparent} onClick={backTenSecs}>
                 <Image src="/backward.png" alt="play" width={59} height={40} />
@@ -144,14 +147,17 @@ export default function AudioPlayer() {
 
             {/* volume bar */}
             {/* styles to volume bar: https://stackoverflow.com/questions/15935837/how-to-display-a-range-input-slider-vertically */}
-            <div className={styles.VolumeBarContainer}>
-                <input 
-                    ref={volumeBar} 
-                    onChange={changeVolumeRange} 
-                    type="range" 
-                    className={styles.volumeBar} 
-                    defaultValue="100" 
-                />
+            <div className={styles.volumeBarContainer}>
+                <Image src="/volume.png" alt="volume" width={34} height={34} />
+                <div className={styles.inputContainer}>
+                    <input 
+                        ref={volumeBar} 
+                        onChange={changeVolumeRange} 
+                        type="range" 
+                        className={styles.volumeBar} 
+                        defaultValue="100" 
+                    />
+                </div>
             </div>
 
         </div>

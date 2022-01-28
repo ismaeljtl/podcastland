@@ -28,7 +28,7 @@
     --selectedKnobby: #fff;
     
     appearance: none;
-    background: var(--bar-bg);;
+    background: var(--bar-bg);
     border-radius: 10px;
     position: relative;
     width: 100%;
@@ -130,10 +130,39 @@
     background-color: #C9AEF1;
     border: none;
     border-radius: 100%;
-    width: 3.5rem;
+    width: 3.15rem;
     height: 2.5rem;
     padding: .5rem;
 }
 .play {
     padding-left: 0.65rem;
+}
+
+.volumeBarContainer {
+    position: relative;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    display: flex;
+    align-items: center;
+}
+.inputContainer {
+    cursor: pointer;
+    margin: 1rem 0;
+    display: none;
+    position: absolute;
+    top: -154px;
+    left: 0;
+    right: 0;
+}
+.volumeBar {
+    cursor: pointer;
+    height: 129px;
+    width: 16px;
+    -webkit-appearance: slider-vertical;
+}
+.volumeBarContainer:hover .inputContainer {
+    display: block;
+}
+.volumeBar:hover {
+    display: block;
 }
