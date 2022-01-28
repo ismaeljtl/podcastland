@@ -4,14 +4,32 @@
 }
 
 .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   background: #090232;
   width: 100%;
   margin: 0 auto;
   padding: 0 12.5%;
 }
 
+.search {
+  width: 100%;
+  margin-left: 3rem;
+  margin-top: 1.5rem;
+}
+
 @media (min-width: 1500px) {
   .header {
     padding: 0 12.5%;
+  }
+}
+@media (max-width: 980px) {
+  .header {
+    flex-direction: column;
+  }
+  .search {
+    margin-top: 1.5rem;
+    margin-left: 0;
   }
 }
