@@ -116,27 +116,40 @@ export default function AudioPlayer() {
         onLoadStart={() => audio && setAudioLoading(true)}
         onCanPlayThrough={() => audio && setAudioLoading(false)}
       ></audio>
-      <button className={styles.transparent} onClick={backTenSecs}>
-        <Image src="/backward.png" alt="play" width={59} height={40} />
-      </button>
 
-      {audioLoading && <button disabled>Loading...</button>}
-      {!audioLoading && (
-        <button
-          className={isPlaying ? styles.pause : styles.play}
-          onClick={togglePlayPause}
-        >
-          {isPlaying ? (
-            <Image src="/pause.png" alt="pause" width={11} height={16} />
-          ) : (
-            <Image src="/play.png" alt="play" width={14} height={16} />
-          )}
+      <div className={styles.imageContainer}>
+        <Image
+          loader={() => podcastContext.thumbnail}
+          src={podcastContext.thumbnail}
+          alt="thumbnail"
+          width={80}
+          height={80}
+        />
+      </div>
+
+      <div className={styles.buttonsContainer}>
+        <button className={styles.transparent} onClick={backTenSecs}>
+          <Image src="/backward.png" alt="play" width={59} height={40} />
         </button>
-      )}
 
-      <button className={styles.transparent} onClick={forwardTenSecs}>
-        <Image src="/forward.png" alt="play" width={59} height={40} />
-      </button>
+        {audioLoading && <button disabled>Loading...</button>}
+        {!audioLoading && (
+          <button
+            className={isPlaying ? styles.pause : styles.play}
+            onClick={togglePlayPause}
+          >
+            {isPlaying ? (
+              <Image src="/pause.png" alt="pause" width={11} height={16} />
+            ) : (
+              <Image src="/play.png" alt="play" width={14} height={16} />
+            )}
+          </button>
+        )}
+
+        <button className={styles.transparent} onClick={forwardTenSecs}>
+          <Image src="/forward.png" alt="play" width={59} height={40} />
+        </button>
+      </div>
 
       {/* current time */}
       <div className={styles.timer}>{calculateDuration(currentTime)}</div>
@@ -153,7 +166,7 @@ export default function AudioPlayer() {
       </div>
 
       {/* duration */}
-      <div className={styles.duration}>
+      <div className={styles.timer}>
         {duration && !isNaN(duration) ? calculateDuration(duration) : "00:00"}
       </div>
 
@@ -163,6 +176,8 @@ export default function AudioPlayer() {
         <Image src="/volume.png" alt="volume" width={34} height={34} />
         <div className={styles.inputContainer}>
           <input
+            // @ts-ignore
+            orient={"vertical"}
             ref={volumeBar}
             onChange={changeVolumeRange}
             type="range"

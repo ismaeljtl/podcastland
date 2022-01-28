@@ -1,6 +1,6 @@
 .audioPlayer {
   position: absolute;
-  bottom: 39px;
+  bottom: 38px;
   left: 0;
   right: 0;
   display: flex;
@@ -9,16 +9,29 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(5px);
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0.25rem;
+}
+.imageContainer {
+  display: flex;
+  padding: 0 0.25rem;
+}
+.imageContainer img {
+  border-radius: 0.5rem;
 }
 .timer {
   color: #fff;
+  width: 3.75rem;
+}
+.audioPlayer .buttonsContainer {
+  display: flex;
+  width: 10rem;
 }
 .audioPlayer button {
   color: black;
 }
 .progressBarContainer {
   width: 100%;
+  padding: 0 0.25rem;
 }
 .progressBar {
   --bar-bg: #432273;
@@ -131,7 +144,7 @@
   background-color: #c9aef1;
   border: none;
   border-radius: 100%;
-  width: 3.15rem;
+  width: 3.5rem;
   height: 2.5rem;
   padding: 0.5rem;
 }
@@ -145,6 +158,7 @@
   margin: 0 0.5rem;
   display: flex;
   align-items: center;
+  -webkit-appearance: slider-vertical;
 }
 .inputContainer {
   cursor: pointer;
@@ -166,4 +180,15 @@
 }
 .volumeBar:hover {
   display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .audioPlayer {
+    bottom: 49px;
+  }
+}
+@media screen and (max-width: 310px) {
+  .audioPlayer {
+    bottom: 74px;
+  }
 }

@@ -20,3 +20,12 @@
 .container:last-child {
   margin-bottom: 2.5rem;
 }
+.containerWithPlayer {
+  padding: 1rem;
+  background-color: #e9dafb;
+  margin: 1px 0;
+  color: #090232;
+}
+.containerWithPlayer:last-child {
+  margin-bottom: 6.5rem;
+}

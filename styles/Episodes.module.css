@@ -1,45 +1,45 @@
 .container {
-    background: linear-gradient(180deg, #090232 0%, #2D124F 100%);
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 12.5% 1rem;
+  background: linear-gradient(180deg, #090232 0%, #2d124f 100%);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 12.5% 1rem;
 }
 
 .containerWithAudioPlayer {
-    background: linear-gradient(180deg, #090232 0%, #2D124F 100%);
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 12.5% 8.5rem;
+  background: linear-gradient(180deg, #090232 0%, #2d124f 100%);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 12.5% 1rem;
 }
 
 .flexContainer {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.image{
-    margin: 0 30%;
+.image {
+  margin: 0 30%;
 }
 
 .divider {
-    border: 1px solid #EE7EFF;
-    margin: 1.5rem 0;
+  border: 1px solid #ee7eff;
+  margin: 1.5rem 0;
 }
 
 .strong {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .episodes div:first-child {
-    border-radius: .5rem .5rem 0 0;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .episodes div:last-child {
-    border-radius: 0 0 .5rem .5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 @media (max-width: 600px) {
-    .image{
-        margin: inherit;
-    }
+  .image {
+    margin: inherit;
+  }
 }
