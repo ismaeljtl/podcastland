@@ -1,20 +1,22 @@
 .container {
-    padding: 1rem;
-    background-color: #E9DAFB;
-    margin: 1px 0;
-    color: #090232;
+  padding: 1rem;
+  background-color: #e9dafb;
+  margin: 1px 0;
+  color: #090232;
 }
 .active {
-    font-weight: 600;
-    padding: 1rem;
-    background-color: #C9AEF1;
-    margin: 1px 0;
-    color: #090232;
-    border: 2px solid #E9DAFB;
+  font-weight: 600;
+  padding: 1rem;
+  background-color: #c9aef1;
+  margin: 1px 0;
+  color: #090232;
+  border: 2px solid #e9dafb;
 }
 .container:hover {
-    cursor: pointer;
+  cursor: pointer;
+  background-color: #c9aef1;
+  border: 2px solid #e9dafb;
 }
 .container:last-child {
-    margin-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
 }
