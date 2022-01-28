@@ -3,6 +3,7 @@ import { PodcastContext } from "../context/PodcastContext";
 import { Episode } from "../interfaces/episode";
 import styles from "./AudioPlayer.module.css";
 import Image from "next/image";
+import LoaderPlayer from "./LoaderPlayer";
 
 export default function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -127,13 +128,13 @@ export default function AudioPlayer() {
         />
       </div>
 
-      <div className={styles.buttonsContainer}>
-        <button className={styles.transparent} onClick={backTenSecs}>
-          <Image src="/backward.png" alt="play" width={59} height={40} />
-        </button>
+      {audioLoading && <LoaderPlayer />}
+      {!audioLoading && (
+        <div className={styles.buttonsContainer}>
+          <button className={styles.transparent} onClick={backTenSecs}>
+            <Image src="/backward.png" alt="play" width={59} height={40} />
+          </button>
 
-        {audioLoading && <button disabled>Loading...</button>}
-        {!audioLoading && (
           <button
             className={isPlaying ? styles.pause : styles.play}
             onClick={togglePlayPause}
@@ -144,12 +145,12 @@ export default function AudioPlayer() {
               <Image src="/play.png" alt="play" width={14} height={16} />
             )}
           </button>
-        )}
 
-        <button className={styles.transparent} onClick={forwardTenSecs}>
-          <Image src="/forward.png" alt="play" width={59} height={40} />
-        </button>
-      </div>
+          <button className={styles.transparent} onClick={forwardTenSecs}>
+            <Image src="/forward.png" alt="play" width={59} height={40} />
+          </button>
+        </div>
+      )}
 
       {/* current time */}
       <div className={styles.timer}>{calculateDuration(currentTime)}</div>
