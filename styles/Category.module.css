@@ -1,5 +1,6 @@
 .container {
-  background: linear-gradient(180deg, #090232 0%, #2D124F 100%);
+  min-height: calc(100vh - 110px);
+  background: linear-gradient(180deg, #090232 0%, #2d124f 100%);
   width: 100%;
   margin: 0 auto;
   padding: 0 12.5% 1rem;
@@ -7,7 +8,7 @@
 
 .title {
   margin: 0;
-  padding: .5rem 0 2rem;
+  padding: 0.5rem 0 2rem;
 }
 
 .podcasts {
@@ -18,9 +19,9 @@
 .category {
   display: inline-block;
   color: #000;
-  background: #539CED;
-  padding: .25rem .75rem;
-  margin: .25rem .5rem .75rem .25rem;
+  background: #539ced;
+  padding: 0.25rem 0.75rem;
+  margin: 0.25rem 0.5rem 0.75rem 0.25rem;
   border-radius: 3rem;
 }
 
