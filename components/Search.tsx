@@ -29,7 +29,7 @@ export default function Search() {
     const fetchSearch = async (search: string) => {
         const res = await fetch(`https://listen-api.listennotes.com/api/v2/typeahead?q=${search}&show_podcasts=1&show_genres=1&safe_mode=0`, {
             method: 'GET',
-            headers:{ 'X-ListenAPI-Key': '47fae8b32d2b4c57b681a292de58f553'}
+            headers:{ 'X-ListenAPI-Key': process.env.NEXT_PUBLIC_KEY! }
         });
         const data: Typeahead = await res.json();
         setData(data);

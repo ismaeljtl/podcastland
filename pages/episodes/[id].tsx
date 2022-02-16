@@ -27,7 +27,7 @@ export default function Episodes (props: {data: PodcastEpisodes, id: string}) {
             `https://listen-api.listennotes.com/api/v2/podcasts/${id}?next_episode_pub_date=${pubDate}`,
             {
                 method: "GET",
-                headers: { "X-ListenAPI-Key": "47fae8b32d2b4c57b681a292de58f553" },
+                headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! },
             }
         )
         ).json();

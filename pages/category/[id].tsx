@@ -19,7 +19,7 @@ export default function Category (props: {data: CategoryPodcasts, id: string}) {
                 `https://listen-api.listennotes.com/api/v2//best_podcasts?genre_id=${id}&region=us&safe_mode=0&&page=${indexPage}`,
             {
                 method: "GET",
-                headers: { "X-ListenAPI-Key": "47fae8b32d2b4c57b681a292de58f553" },
+                headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! },
             }
             )
         ).json();

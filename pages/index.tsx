@@ -22,7 +22,7 @@ export default function Home(props: {
         `https://listen-api.listennotes.com/api/v2/curated_podcasts?page=${indexPage}`,
         {
           method: "GET",
-          headers: { "X-ListenAPI-Key": "47fae8b32d2b4c57b681a292de58f553" },
+          headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! },
         }
       )
     ).json();
