@@ -13,6 +13,17 @@ export default function Home(props: {
   genres: Genre[];
   curatedPodcasts: CuratedListElement[];
 }) {
+  if (!props.genres || !props.curatedPodcasts) {
+    return (
+      <div className={styles.errorContainer}>
+        <h3>
+          Ooops... Something went wrong 🙈, we're working on getting this fixed
+          as soon as we can. You may be able to try again later.
+        </h3>
+      </div>
+    );
+  }
+
   const [curatedPodcasts, setCuratedPodcasts] = useState(props.curatedPodcasts);
   const [indexPage, setIndexPage] = useState(2);
 
@@ -22,7 +33,7 @@ export default function Home(props: {
         `https://listen-api.listennotes.com/api/v2/curated_podcasts?page=${indexPage}`,
         {
           method: "GET",
-          headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! },
+          headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! }
         }
       )
     ).json();
@@ -37,7 +48,7 @@ export default function Home(props: {
       hasMore={true}
       loader={<Loader />}
       endMessage={""}
-      style={{ background: "#2c124f", overflow: 'unset' }}
+      style={{ background: "#2c124f", overflow: "unset" }}
     >
       <div className={styles.container}>
         <header className={styles.header}>
@@ -84,18 +95,19 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const res = await Promise.all([
     fetch(`${process.env.BASE_URL}/genres?top_level_only=1`, {
       method: "GET",
-      headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! },
+      headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! }
     }),
     fetch(`${process.env.BASE_URL}/curated_podcasts`, {
       method: "GET",
-      headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! },
-    }),
+      headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! }
+    })
   ]);
 
   const data1: any = await res[0].json();
   const data2: any = await res[1].json();
-  const genres: Genre[] = data1.genres;
-  const curatedPodcasts: CuratedListElement[] = data2.curated_lists;
+  const genres: Genre[] = data1.genres === undefined ? null : data1.genres;
+  const curatedPodcasts: CuratedListElement[] =
+    data2.curated_lists === undefined ? null : data2.curated_lists;
 
   // Pass data to the page via props
   return { props: { genres, curatedPodcasts } };
