@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
 import { Genre } from "../interfaces/genre";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Search from "../components/Search";
 import { CuratedListElement } from "../interfaces/curatedList";
 import ImageCard from "../components/ImageCard";
@@ -17,8 +17,9 @@ export default function Home(props: {
     return (
       <div className={styles.errorContainer}>
         <h3>
-          Ooops... Something went wrong 🙈, we're working on getting this fixed
-          as soon as we can. You may be able to try again later.
+          We've seen that this is not working for you, that's why we're working
+          in creating a new version of Podcastland! 🎉 Stay tuned to see the new
+          website. 🤩
         </h3>
       </div>
     );
@@ -33,7 +34,7 @@ export default function Home(props: {
         `https://listen-api.listennotes.com/api/v2/curated_podcasts?page=${indexPage}`,
         {
           method: "GET",
-          headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! }
+          headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! },
         }
       )
     ).json();
@@ -91,16 +92,16 @@ export default function Home(props: {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await Promise.all([
     fetch(`${process.env.BASE_URL}/genres?top_level_only=1`, {
       method: "GET",
-      headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! }
+      headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! },
     }),
     fetch(`${process.env.BASE_URL}/curated_podcasts`, {
       method: "GET",
-      headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! }
-    })
+      headers: { "X-ListenAPI-Key": process.env.NEXT_PUBLIC_KEY! },
+    }),
   ]);
 
   const data1: any = await res[0].json();
